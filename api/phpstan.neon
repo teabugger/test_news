@@ -1,0 +1,30 @@
+parameters:
+  tmpDir:
+      '%rootDir%/../../../var/cache/stan'
+
+  reportUnmatchedIgnoredErrors: false
+  inferPrivatePropertyTypeFromConstructor: true
+  checkGenericClassInNonGenericObjectType: false
+  checkMissingIterableValueType: false
+  treatPhpDocTypesAsCertain: false
+
+  excludes_analyse:
+    - '%rootDir%/../../../src/Migrations/*'
+    - '%rootDir%/../../../tests/*'
+
+  ignoreErrors:
+      -
+          path: '%currentWorkingDirectory%/src/Swagger/SwaggerDecorator.php'
+          message: '#Access to an undefined property Doctrine\\Common\\Persistence\\Mapping\\ClassMetadata::\$[\w]+#'
+      -
+          path: '%currentWorkingDirectory%/src/Swagger/SwaggerDecorator.php'
+          message: '#If condition is always false#'
+      -
+          path: '%currentWorkingDirectory%/src/Swagger/SwaggerDecorator.php'
+          message: "#Offset 'definitions' does not exist [.]*#"
+      -
+          path: '%currentWorkingDirectory%/src/Swagger/SwaggerDecorator.php'
+          message: '#Unreachable statement#'
+
+  parallel:
+      processTimeout: 600.00

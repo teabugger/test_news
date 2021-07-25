@@ -1,0 +1,16 @@
+parameters:
+    env(RABBITMQ_DEFAULT_USER): 'user'
+    env(RABBITMQ_DEFAULT_PASS): 'password'
+    env(RABBIT_DSN): 'amqp://%env(RABBITMQ_DEFAULT_USER)%:%env(RABBITMQ_DEFAULT_PASS)%@rabbitmq:5672'
+
+framework:
+    messenger:
+        failure_transport: failed
+
+        transports:
+            create-news:
+                dsn: '%env(resolve:RABBIT_DSN)%/%2f/news'
+            failed: '%env(resolve:RABBIT_DSN)%/%2f/failed'
+
+        routing:
+            App\Queue\Handlers\CreateNewsHandler: create-news
