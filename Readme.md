@@ -25,7 +25,9 @@
 
 ##Запуск
 1. docker-composer up -d;
-2. http://localhost (документация API)
+2. docker-composer exec php sh -c 'composer install'
+3. docker-composer exec php sh -c 'php bin/console d:m:m -n'
+4. http://localhost (документация API)
 
 ##Работа с очередями
 Для добавления новости через очередь используется rabbitmq, очередь create-news. Креды RabbitMQ указаны в .env-файле. Новость принимается json-строкой, совпадающей по структуре с созданием через API (схема описана на странице документации API)
